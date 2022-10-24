@@ -9,6 +9,7 @@ root.geometry("480x480")
 
 def generate_keypair():
     print("hello man")
+    print(cr.get_sha256("mateo.txt"))
 
 rsa_button = ttk.Button(
     root,

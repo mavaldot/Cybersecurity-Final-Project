@@ -1,9 +1,12 @@
+import hashlib
 
-BLOCK_SIZE = 4096
+BLOCKSIZE = 4096
 
-def sha256(filepath):
+def get_sha256(filepath):
+    sha256 = hashlib.sha256()
     with open(filepath, 'rb') as f:
-        block = f.read(BLOCK_SIZE)
-        print(block)
-        while block:
-            block = f.read(BLOCK_SIZE)
+        for block in iter(lambda: f.read(BLOCKSIZE), b""):
+            sha256.update(block)
+
+    return sha256.hexdigest()
+
