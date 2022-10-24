@@ -1,5 +1,5 @@
 # Cybersecurity-Final-Project
 
 ```
-pip install pycryptodome
+pip install cryptography pycryptodome
 ```
