@@ -32,16 +32,18 @@ def generate_rsa(p_size, q_size, password):
         f.write(f"{e};{n}")
 
 def read_public_key(path):
+    arr = []
     with open(path, "r") as f:
         data = f.readline()
         arr = data.split(";")
     
-    if arr is None or (len(arr) != 2):
+    if len(arr) != 2:
         raise Exception("Invalid key")
 
     return arr[0], arr[1]
 
 def read_private_key(path, password):
+    arr = []
     password = bytes(password, "utf-8")
 
     kdf = PBKDF2HMAC(
@@ -59,7 +61,7 @@ def read_private_key(path, password):
         decoded_data = fernet.decrypt(data).decode("utf-8")
         arr = decoded_data.split(";")
 
-    if arr is None or (len(arr) != 2):
+    if len(arr) != 2:
         raise Exception("Invalid key")
 
     return arr[0], arr[1]
