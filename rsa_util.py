@@ -1,10 +1,11 @@
 import math
+import base64
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from Crypto.Util import number
 
-# print(number.getPrime(256))
-# print(number.getPrime(128))
-
-def generate_rsa(p_size, q_size):
+def generate_rsa(p_size, q_size, password):
     p = number.getPrime(p_size)
     q = number.getPrime(q_size)
     n = p*q
@@ -12,10 +13,56 @@ def generate_rsa(p_size, q_size):
     e = number.getPrime(max(p_size, q_size))
     d = pow(e, -1, lmbda)
 
-    with open('priv_key.KEY', 'w') as f:
-        f.write(f"{d};{n}")
+    password = bytes(password, "utf-8")
+
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=b'0',
+        iterations=1000
+    )
+    key = base64.urlsafe_b64encode(kdf.derive(password))
+    fernet = Fernet(key)
+
+    with open("priv_key.KEY", "wb") as f:
+        secret_key = f"{d};{n}"
+        f.write(fernet.encrypt(secret_key.encode('utf-8')))
     
-    with open('pub_key.KEY', 'w') as f:
+    with open("pub_key.KEY", "w") as f:
         f.write(f"{e};{n}")
 
-generate_rsa(1024, 256)
+def read_public_key(path):
+    with open(path, "r") as f:
+        data = f.readline()
+        arr = data.split(";")
+    
+    if arr is None or (len(arr) != 2):
+        raise Exception("Invalid key")
+
+    return arr[0], arr[1]
+
+def read_private_key(path, password):
+    password = bytes(password, "utf-8")
+
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=b'0',
+        iterations=1000
+    )
+
+    key = base64.urlsafe_b64encode(kdf.derive(password))
+    fernet = Fernet(key)
+
+    with open(path, "rb") as f:
+        data = f.read()
+        decoded_data = fernet.decrypt(data).decode("utf-8")
+        arr = decoded_data.split(";")
+
+    if arr is None or (len(arr) != 2):
+        raise Exception("Invalid key")
+
+    return arr[0], arr[1]
+
+generate_rsa(1024, 256, "1234")
+print(read_private_key("priv_key.KEY", "1234"))
