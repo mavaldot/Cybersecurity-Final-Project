@@ -12,7 +12,10 @@ def generate_rsa(p_size, q_size):
     e = number.getPrime(max(p_size, q_size))
     d = pow(e, -1, lmbda)
 
-    print(d)
-    print(e)
+    with open('priv_key.KEY', 'w') as f:
+        f.write(f"{d};{n}")
+    
+    with open('pub_key.KEY', 'w') as f:
+        f.write(f"{e};{n}")
 
-generate_rsa(1024, 2048)
+generate_rsa(1024, 256)
