@@ -17,13 +17,14 @@ def create_signature():
     tkinter.messagebox.showinfo(title=None, message="Please choose the PRIVATE KEY")
     private_key = askopenfilename(title="Please pick the PRIVATE KEY")
     tkinter.messagebox.showinfo(title=None, message="Please enter the PASSWORD for the PRIVATE KEY")
-    user_pass = tk.simpledialog.askstring("Passowrd", "Please enter the private key's password", show='*')
+    user_pass = tk.simpledialog.askstring("Password", "Please enter the private key's password", show='*')
 
     try:
         rsig.create_signature(filepath, private_key, user_pass)
         tkinter.messagebox.showinfo(title=None, message="Signature created successfully!")
     except Exception as e:
-        tkinter.messagebox.showerror(title=None, message=f"An Exception occurred: {e}")
+        print(e)
+        tkinter.messagebox.showerror(title=None, message=f"An Exception occurred. Please make sure you chose the correct file and entered the correct password. {e}")
 
 def verify_signature():
     tkinter.messagebox.showinfo(title=None, message="Please choose the FILE you want to VERIFY")
@@ -40,12 +41,15 @@ def verify_signature():
         else:
             tkinter.messagebox.showwarning(title=None, message="The signature does NOT match the file and key!")
     except Exception as e:
+        print(e)
         tkinter.messagebox.showerror(title=None, message=f"An Exception occurred: {e}")
 
 def generate_keypair():
-    print("hello man")
-    user_pass = tk.simpledialog.askstring("Passowrd", "Please enter the password", show='*')
-    rutil.generate_rsa(1024, 256, "1234")
+    user_pass = tk.simpledialog.askstring("Password", "Please enter the password", show='*')
+    rutil.generate_rsa(1024, 256, user_pass)
+    tkinter.messagebox.showinfo(title=None, message="KEYPAIR generated successfully!")
+
+
 
 rsa_button = ttk.Button(
     root,

@@ -65,6 +65,3 @@ def read_private_key(path, password):
         raise Exception("Invalid key")
 
     return arr[0], arr[1]
-
-generate_rsa(1024, 256, "1234")
-print(read_private_key("priv_key.KEY", "1234"))

@@ -15,8 +15,6 @@ def get_sha256(filepath):
 def create_signature(file, priv_key, password):
     hash = get_sha256(file)
     hash = int.from_bytes(hash, sys.byteorder)
-    print('aaa')
-    print(hash)
     d, n = read_private_key(priv_key, password)
     d, n = int(d), int(n)
     cipher = pow(hash, d, n)
@@ -35,8 +33,3 @@ def verify_signature(file, pub_key, signature):
         result = pow(cipher, e, n)
 
     return hash == result
-
-create_signature('mateo.txt', 'priv_key.KEY', '1234')
-a = verify_signature('mateo.txt', 'pub_key.KEY', 'signature.SIG')
-print(a)
-
