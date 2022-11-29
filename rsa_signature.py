@@ -3,6 +3,7 @@ import sys
 from rsa_util import read_private_key, read_public_key
 
 BLOCKSIZE = 4096
+SIGNATURE_FOLDER = "signatures/"
 
 def get_sha256(filepath):
     sha256 = hashlib.sha256()
@@ -18,7 +19,7 @@ def create_signature(file, priv_key, password):
     d, n = read_private_key(priv_key, password)
     d, n = int(d), int(n)
     cipher = pow(hash, d, n)
-    with open('signature.SIG', 'w') as f:
+    with open(SIGNATURE_FOLDER+'signature.SIG', 'w') as f:
         f.write(str(cipher))  
 
 def verify_signature(file, pub_key, signature):

@@ -5,6 +5,8 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from Crypto.Util import number
 
+KEY_FOLDER = 'keys/'
+
 def generate_rsa(p_size, q_size, password):
     p = number.getPrime(p_size)
     q = number.getPrime(q_size)
@@ -24,11 +26,11 @@ def generate_rsa(p_size, q_size, password):
     key = base64.urlsafe_b64encode(kdf.derive(password))
     fernet = Fernet(key)
 
-    with open("priv_key.KEY", "wb") as f:
+    with open(KEY_FOLDER+"priv_key.KEY", "wb") as f:
         secret_key = f"{d};{n}"
         f.write(fernet.encrypt(secret_key.encode('utf-8')))
     
-    with open("pub_key.KEY", "w") as f:
+    with open(KEY_FOLDER+"pub_key.KEY", "w") as f:
         f.write(f"{e};{n}")
 
 def read_public_key(path):
