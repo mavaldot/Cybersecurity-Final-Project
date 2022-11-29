@@ -19,7 +19,10 @@ def create_signature(file, priv_key, password):
     d, n = read_private_key(priv_key, password)
     d, n = int(d), int(n)
     cipher = pow(hash, d, n)
-    with open(SIGNATURE_FOLDER+'signature.SIG', 'w') as f:
+
+    signature_name = file.split('/').pop()
+
+    with open(SIGNATURE_FOLDER+f'{signature_name}.SIG', 'w') as f:
         f.write(str(cipher))  
 
 def verify_signature(file, pub_key, signature):

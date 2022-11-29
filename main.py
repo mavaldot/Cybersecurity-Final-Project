@@ -17,8 +17,16 @@ SIGNATURES_FOLDER = 'signatures'
 def create_signature():
     tkinter.messagebox.showinfo(title=None, message="Please choose the FILE you want to SIGN")
     filepath = askopenfilename(title="Please pick the FILE")
+    if not filepath.strip():
+        tkinter.messagebox.showerror(title=None, message=f"An Error occurred. Please make sure you chose a file.")
+        return
+
     tkinter.messagebox.showinfo(title=None, message="Please choose the PRIVATE KEY")
     private_key = askopenfilename(title="Please pick the PRIVATE KEY", initialdir = KEYS_FOLDER)
+    if not private_key.strip():
+        tkinter.messagebox.showerror(title=None, message=f"An Error occurred. Please make sure you chose a file.")
+        return
+
     tkinter.messagebox.showinfo(title=None, message="Please enter the PASSWORD for the PRIVATE KEY")
     user_pass = tk.simpledialog.askstring("Password", "Please enter the private key's password", show='*')
 
@@ -32,10 +40,21 @@ def create_signature():
 def verify_signature():
     tkinter.messagebox.showinfo(title=None, message="Please choose the FILE you want to VERIFY")
     filepath = askopenfilename(title="Please pick the FILE")
+    if not filepath.strip():
+        tkinter.messagebox.showerror(title=None, message=f"An Error occurred. Please make sure you chose a file.")
+        return
+
     tkinter.messagebox.showinfo(title=None, message="Please choose the SIGNATURE you want to verify")
     signature = askopenfilename(title="Please pick the SIGNATURE", initialdir = SIGNATURES_FOLDER)
+    if not signature.strip():
+        tkinter.messagebox.showerror(title=None, message=f"An Error occurred. Please make sure you chose a file.")
+        return
+    
     tkinter.messagebox.showinfo(title=None, message="Please choose the PUBLIC KEY")
     public_key = askopenfilename(title="Please pick the PUBLIC KEY", initialdir = KEYS_FOLDER)
+    if not public_key.strip():
+        tkinter.messagebox.showerror(title=None, message=f"An Error occurred. Please make sure you chose a file.")
+        return
 
     try:
         verification = rsig.verify_signature(filepath, public_key, signature)
@@ -49,11 +68,12 @@ def verify_signature():
 
 def generate_keypair():
     user_pass = tk.simpledialog.askstring("Password", "Please enter the password", show='*')
-    rutil.generate_rsa(1024, 256, user_pass)
+    key_name = tk.simpledialog.askstring("Key Name", "Please enter the key name \n(leave blank if you want to save the keys in the root folder) ")
+    rutil.generate_rsa(1024, 256, user_pass, key_name)
     tkinter.messagebox.showinfo(title=None, message="KEYPAIR generated successfully!")
 
 
-
+# Buttons
 rsa_button = ttk.Button(
     root,
     text="Generate RSA Key Pair",
