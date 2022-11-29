@@ -11,11 +11,14 @@ root = tk.Tk()
 root.title("Signature Verifier")
 root.geometry("480x480")
 
+KEYS_FOLDER = 'keys'
+SIGNATURES_FOLDER = 'signatures'
+
 def create_signature():
     tkinter.messagebox.showinfo(title=None, message="Please choose the FILE you want to SIGN")
     filepath = askopenfilename(title="Please pick the FILE")
     tkinter.messagebox.showinfo(title=None, message="Please choose the PRIVATE KEY")
-    private_key = askopenfilename(title="Please pick the PRIVATE KEY")
+    private_key = askopenfilename(title="Please pick the PRIVATE KEY", initialdir = KEYS_FOLDER)
     tkinter.messagebox.showinfo(title=None, message="Please enter the PASSWORD for the PRIVATE KEY")
     user_pass = tk.simpledialog.askstring("Password", "Please enter the private key's password", show='*')
 
@@ -30,9 +33,9 @@ def verify_signature():
     tkinter.messagebox.showinfo(title=None, message="Please choose the FILE you want to VERIFY")
     filepath = askopenfilename(title="Please pick the FILE")
     tkinter.messagebox.showinfo(title=None, message="Please choose the SIGNATURE you want to verify")
-    signature = askopenfilename(title="Please pick the SIGNATURE")
+    signature = askopenfilename(title="Please pick the SIGNATURE", initialdir = SIGNATURES_FOLDER)
     tkinter.messagebox.showinfo(title=None, message="Please choose the PUBLIC KEY")
-    public_key = askopenfilename(title="Please pick the PUBLIC KEY")
+    public_key = askopenfilename(title="Please pick the PUBLIC KEY", initialdir = KEYS_FOLDER)
 
     try:
         verification = rsig.verify_signature(filepath, public_key, signature)
