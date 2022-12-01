@@ -9,6 +9,11 @@ from Crypto.Util import number
 KEY_FOLDER = 'keys/'
 
 def generate_rsa(p_size, q_size, password, key_name=""):
+    """
+    Generates the RSA key pair (public key, private key) and encrypts it with a password
+    The `p_size` and `q_size` parameters indicate the size (in bits) of the p and q prime numbers
+    A priv_key.KEY and pub_key.KEY files are generated
+    """
     p = number.getPrime(p_size)
     q = number.getPrime(q_size)
     n = p*q
@@ -40,6 +45,11 @@ def generate_rsa(p_size, q_size, password, key_name=""):
         f.write(f"{e};{n}")
 
 def read_public_key(path):
+    """
+    This function reads a public key given a path.
+    The public is composed of two integers `n` and `e`
+    The integers must be separated by a `;`
+    """
     arr = []
     with open(path, "r") as f:
         data = f.readline()
@@ -51,6 +61,11 @@ def read_public_key(path):
     return arr[0], arr[1]
 
 def read_private_key(path, password):
+    """
+    This function reads and decrypts private key given a path and password
+    The public is composed of two integers `n` and `d`
+    The integers must be separated by a `;`
+    """
     arr = []
     password = bytes(password, "utf-8")
 
