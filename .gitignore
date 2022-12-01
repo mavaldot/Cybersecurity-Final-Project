@@ -1,6 +1,8 @@
 __pycache__
 keys/*
+!keys/README.md
 signatures/*
+!signatures/README.md
 venv
 test.txt
 *.KEY
