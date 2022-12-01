@@ -8,7 +8,7 @@ import rsa_util as rutil
 import rsa_signature as rsig
 
 """
-This is the main module of the cibersecurity-final-project.
+This is the main module of the Signature Verifier project.
 """
 
 KEYS_FOLDER = 'keys'
@@ -101,7 +101,7 @@ root.geometry("480x480")
 
 generate_rsa_button = ttk.Button(
     root,
-    text="Generate RSA Key Pair",
+    text="Generate RSA key pair",
     command=generate_keypair
 )
 generate_rsa_button.pack(padx=20, pady=20)
