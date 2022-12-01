@@ -2,3 +2,6 @@ __pycache__
 keys/*
 signatures/*
 venv
+test.txt
+*.KEY
+*.SIG
