@@ -1,8 +1,8 @@
-# Signature Verifier 📃✒
+# Signature Verifier 
 
 Cibersecurity project to generate and verify document signatures using RSA (SHA256).
 
-## Getting Started ✨
+## Getting Started 
 
 ### Prerequisites
 
@@ -15,7 +15,7 @@ Clone the repository, go to the projects folder, and run the following command t
 pip install -r requirements.txt
 ```
 
-## Usage 🎬
+## Usage 
 
 To open the app, run the `main.py` python file.
 
@@ -29,7 +29,7 @@ It will display a window with three options:
 - **Create a new signature:** Create the signature of a selected file.
 - **Check a signature:** Verify the signature of a selected file.
 
-## Authors 😊
+## Authors 
 
 ![Quality](https://images.weserv.nl/?url=avatars.githubusercontent.com/u/48232743?v=4&h=50&w=50&fit=cover&mask=circle&maxage=7d) **Esarac**
 
