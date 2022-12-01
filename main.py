@@ -47,7 +47,7 @@ def create_signature():
         return
 
     tkinter.messagebox.showinfo(title=None, message="Please choose the PRIVATE KEY")
-    private_key = askopenfilename(title="Please pick the PRIVATE KEY", initialdir = KEYS_FOLDER)
+    private_key = askopenfilename(title="Please pick the PRIVATE KEY", initialdir = KEYS_FOLDER, filetypes=[("Key file","*.KEY")])
     if not private_key.strip():
         tkinter.messagebox.showerror(title="Error", message="Please make sure you chose a file.")
         return
@@ -74,13 +74,13 @@ def verify_signature():
         return
 
     tkinter.messagebox.showinfo(title=None, message="Please choose the SIGNATURE you want to verify")
-    signature = askopenfilename(title="Please pick the SIGNATURE", initialdir = SIGNATURES_FOLDER)
+    signature = askopenfilename(title="Please pick the SIGNATURE", initialdir = SIGNATURES_FOLDER, filetypes=[("Signature file","*.SIG")])
     if not signature.strip():
         tkinter.messagebox.showerror(title="Error", message="Please make sure you chose a file.")
         return
     
     tkinter.messagebox.showinfo(title=None, message="Please choose the PUBLIC KEY")
-    public_key = askopenfilename(title="Please pick the PUBLIC KEY", initialdir = KEYS_FOLDER)
+    public_key = askopenfilename(title="Please pick the PUBLIC KEY", initialdir = KEYS_FOLDER, filetypes=[("Key file","*.KEY")])
     if not public_key.strip():
         tkinter.messagebox.showerror(title="Error", message="Please make sure you chose a file.")
         return
