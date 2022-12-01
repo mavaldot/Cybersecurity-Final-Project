@@ -4,7 +4,7 @@ Cibersecurity project to generate and verify document signatures using RSA (SHA2
 
 ### Build With
 
-
+![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
 
 ## Getting Started ✨
 
