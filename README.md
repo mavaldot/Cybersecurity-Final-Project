@@ -2,10 +2,6 @@
 
 Cibersecurity project to generate and verify document signatures using RSA (SHA256).
 
-### Build With
-
-![Python](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
-
 ## Getting Started ✨
 
 ### Prerequisites
@@ -25,6 +21,7 @@ To open the app, run the `main.py` python file.
 
 ```sh
 python3 main.py
+py main.py
 ```
 
 It will display a window with three options:
@@ -49,5 +46,3 @@ It will display a window with three options:
 ![Quality](https://images.weserv.nl/?url=avatars.githubusercontent.com/u/48870467?v=4&h=50&w=50&fit=cover&mask=circle&maxage=7d) **mavaldot**
 
 [![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mavaldot)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mateovaldes/)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mateovaldes97@gmail.com)
