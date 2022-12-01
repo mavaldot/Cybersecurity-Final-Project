@@ -32,3 +32,7 @@ Al principio, no sabíamos cómo encontrar el inverso multiplicativo de la fórm
 Tuvimos dificulates creando el hash sha256 de un archivo, pero después de investigar y leer la documentación del módulo hashlib de Python, logramos utilizar la funcionalidad de sha256() de ese módulo para obtener un hash sha256 de un archivo seleccionado.
 
 Se presentaron dificultades a la hora de encriptar la llave privada con una contraseña. Para solucionar el problema, se utilizó el paquete de pip llamado cryptography. Utilizando los módulos de encriptación paquete, es posbile codificar los datos a bytes y encriptarlos utilizando una contraseña.
+
+## Conclusiones
+
+En conclusión, RSA, además de permitir encriptar y desencriptar archivos, sirve para crear y verificar firmas. Estas firmas sirven para proteger la integridad de los archivos, puesto que si un archivo es modificado ya no será posible verificarlo con una firma creada con el archivo original. Por último, al hacer esta aplicación fue posible evidenciar que en la ciberseguridad es necesario mucho conocimiento de matemáticas, programación y algoritmos.
