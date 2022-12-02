@@ -15,7 +15,7 @@ Clone the repository, go to the projects folder, and run the following command t
 pip install -r requirements.txt
 ```
 
-## Usage 
+## Running the App
 
 To open the app, run the `main.py` python file.
 
